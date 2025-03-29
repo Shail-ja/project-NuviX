@@ -9,16 +9,20 @@ import {
   Mail,  
   Cloud,
 } from 'lucide-react';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export default function SignupPage() {
+  const router = useRouter();
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
+    username: '',
     email: '',
     password: '',
-    name: '',
-    phone: '',
   });
   
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
 
   const calculatePasswordStrength = (password: string) => {
@@ -31,23 +35,78 @@ export default function SignupPage() {
     return strength;
   };
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const password = e.target.value;
+  // const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const password = e.target.value;
+  //   setFormData(prev => ({
+  //     ...prev,
+  //     password
+  //   }));
+  //   setPasswordStrength(calculatePasswordStrength(password));
+  // };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      password
+      [name]: value
     }));
-    setPasswordStrength(calculatePasswordStrength(password));
+    
+    if (name === 'password') {
+      setPasswordStrength(calculatePasswordStrength(value));
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError('');
+
+    try {
+      const endpoint = isLogin ? '/auth/login' : '/auth/register';
+      const payload = isLogin 
+        ? { email: formData.email, password: formData.password }
+        : formData;
+
+      const response = await axios.post(
+        `http://localhost:5000${endpoint}`,
+        payload
+      );
+
+      if (isLogin) {
+        // Store token and user data
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        
+        // Redirect to dashboard or home page
+        router.push('/dashboard');
+      } else {
+        // After successful registration, switch to login
+        setIsLogin(true);
+        setFormData({
+          username: '',
+          email: '',
+          password: ''
+        });
+        alert('Registration successful! Please login.');
+      }
+    } 
+    catch (err) {
+      setError(
+        err.response?.data?.error || 
+        err.response?.data?.message || 
+        err.message ||
+        'An error occurred. Please try again.'
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
     const submissionData = {
-      ...formData,
-      location
+      ...formData
     };
     console.log('Submission Data:', submissionData);
-  };
+  
 
   const canvasRef = useRef(null);
 
@@ -211,8 +270,10 @@ export default function SignupPage() {
               <User className="absolute left-3 top-3 text-white/30 group-focus-within:text-[var(--color-golden)] transition-colors" />
               <input
                 type="text"
-                name="name"
+                name="username"
                 placeholder="Organization's Name"
+                value={formData.username}
+                onChange={handleInputChange}
                 className="w-full pl-10 pr-4 py-3 text-white/30 border-2 border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-golden)] focus:border-transparent transition-all"
                 required={!isLogin}
               />
@@ -225,6 +286,8 @@ export default function SignupPage() {
               type="email"
               name="email"
               placeholder="Email Address"
+              value={formData.email}
+              onChange={handleInputChange}
               className="w-full pl-10 pr-4 py-3 text-white/30 border-2 border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-golden)] focus:border-transparent transition-all"
               required
             />
@@ -236,7 +299,8 @@ export default function SignupPage() {
               type="password"
               name="password"
               placeholder="Password"
-              onChange={handlePasswordChange}
+              value={formData.password}
+              onChange={handleInputChange}
               className="w-full pl-10 pr-4 py-3 text-white/30 border-2 border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-muted-gold)] focus:border-transparent transition-all"
               required
             />
@@ -254,12 +318,29 @@ export default function SignupPage() {
               ))}
             </div>
           </div>
+
+          {/* Error message display */}
+          {error && (
+            <div className="text-red-400 text-sm py-2">
+              {error}
+            </div>
+          )}
        
           <button 
             type="submit" 
-            className="w-full bg-[var(--color-muted-gold)]/30 text-white py-3 rounded-xl hover:bg-[var(--color-muted-gold)]/80 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
+            disabled={isLoading}
+            className={`w-full bg-[var(--color-muted-gold)]/30 text-white py-3 rounded-xl hover:bg-[var(--color-muted-gold)]/80 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl
+            ${ isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
           >
-            {isLogin ? 'Secure Login' : 'Create Account'}
+            {isLoading ? (
+            <span className="flex items-center justify-center">
+            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Processing...
+            </span>
+            ) : isLogin ? 'Secure Login' : 'Create Account'}
           </button>
         </form>
         
