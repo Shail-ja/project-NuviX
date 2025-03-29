@@ -4,7 +4,7 @@
   --color-primary: #1A1F36; /* Midnight Blue (Luxury, Security) */
   --color-golden: #D4AF37; /* Gold (Prestige, High Value) */
   --color-accent: #2A9D8F; /* Teal (Growth & Stability) */
-  --color-background: #121212; /* Charcoal (Sleek & Modern) */
+  --color-background: black; /* Charcoal (Sleek & Modern) */
   --color-text: #E5E5E5; /* Light Gray (Readable on Dark) */
   --color-muted-gold: #B9972E;
 }

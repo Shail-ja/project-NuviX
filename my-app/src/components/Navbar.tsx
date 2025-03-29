@@ -14,7 +14,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "Home", path: "/", icon: <Home className="h-5 w-5" /> },
     { name: "About us", path: "/about", icon: <Info className="h-5 w-5" /> },
-    { name: "Features", path: "/guide", icon: <BookOpen className="h-5 w-5" /> },
+    { name: "Features", path: "/Features", icon: <BookOpen className="h-5 w-5" /> },
     { name: "Community", path: "/community", icon: <Users className="h-5 w-5" /> },
   ]
 
@@ -37,7 +37,7 @@ export default function Navbar() {
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled
           ? "bg-[var(--color-background)]"
-          : "bg-[var(--color-background)]"
+          : "bg-black"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6">
@@ -100,7 +100,7 @@ export default function Navbar() {
                   </defs>
                 </svg>
               </div>
-              <div className="font-bold text-2xl text-white transition-all duration-300 group-hover:text-sky-100">
+              <div className="font-bold text-2xl text-white transition-all duration-300 group-hover:[var(--color-accent)]">
                 Nuvi<span className="text-[var(--color-golden)]">X</span>
               </div>
             </Link>

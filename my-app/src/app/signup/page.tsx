@@ -88,7 +88,7 @@ export default function SignupPage() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    scene.background = new THREE.Color(0x121212);
+    scene.background = new THREE.Color(0x000000);
 
     // Particles setup
     const particlesGeometry = new THREE.BufferGeometry();
@@ -194,7 +194,7 @@ export default function SignupPage() {
         className="fixed inset-0 z-0 w-full h-full"
       />
       
-      <div className="bg-[var(--color-background)] backdrop-blur-lg shadow-2xl rounded-3xl w-full max-w-md p-8 space-y-6 border border-white/30 relative z-10">
+      <div className="bg-[#121212] backdrop-blur-lg shadow-2xl rounded-3xl w-full max-w-md p-8 space-y-6 border border-white/30 relative z-10">
         {/* Animated logo/header */}
         <div className="flex items-center justify-center mb-6">
           <Cloud className="text-[var(--color-golden)] w-12 h-12 mr-3 animate-bounce" />
