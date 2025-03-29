@@ -1,4 +1,4 @@
-import { Brain, Mail, Phone, MapPin } from 'lucide-react';
+import { Diamond, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -7,8 +7,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-6">
           <div>
             <div className="flex items-center mb-4">
-            <Brain className="h-8 w-8 text-[var(--color-accent)]" />
-            <div className="font-bold text-2xl text-white transition-all duration-300 group-hover:[var(--color-accent)]">
+            <Diamond className="h-8 w-8 text-[var(--color-golden)] fill-current"/>
+            <div className="font-bold text-2xl mx-2 text-white transition-all duration-300 group-hover:[var(--color-accent)]">
             Nuvi<span className="text-[var(--color-golden)]">X</span>
             </div>
             </div>
@@ -29,15 +29,15 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-2">
               <li className="flex items-center">
-                <Mail className="h-5 w-5 mr-2 text-[var(--color-accent)]" />
+                <Mail className="h-5 w-5 mr-2 text-[var(--color-golden)]" />
                 <span className="text-gray-400">nuvix@ac.in</span>
               </li>
               <li className="flex items-center">
-                <Phone className="h-5 w-5 mr-2 text-[var(--color-accent)]" />
-                <span className="text-gray-400">+91 637009XXXX</span>
+                <Phone className="h-5 w-5 mr-2 text-[var(--color-golden)]" />
+                <span className="text-gray-400">+91 637006XXXX</span>
               </li>
               <li className="flex items-center">
-                <MapPin className="h-5 w-5 mr-2 text-[var(--color-accent)]" />
+                <MapPin className="h-5 w-5 mr-2 text-[var(--color-golden)]" />
                 <span className="text-gray-400">National Institute of Technology,Rourkela</span>
               </li>
             </ul>

@@ -13,7 +13,7 @@ export default function Navbar() {
   // Navigation links with icons
   const navLinks = [
     { name: "Home", path: "/", icon: <Home className="h-5 w-5" /> },
-    { name: "About us", path: "/about", icon: <Info className="h-5 w-5" /> },
+    { name: "About us", path: "/AboutUs", icon: <Info className="h-5 w-5" /> },
     { name: "Features", path: "/Features", icon: <BookOpen className="h-5 w-5" /> },
     { name: "Community", path: "/community", icon: <Users className="h-5 w-5" /> },
   ]
