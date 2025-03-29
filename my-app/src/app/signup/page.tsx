@@ -4,11 +4,9 @@ import React, { useState, useEffect, useRef } from 'react';
 // import { motion } from 'framer-motion';
 import * as THREE from 'three';
 import { 
-  MapPin, 
   User, 
   Lock, 
-  Mail, 
-  Shield, 
+  Mail,  
   Cloud,
 } from 'lucide-react';
 
@@ -20,16 +18,12 @@ export default function SignupPage() {
     name: '',
     phone: '',
   });
-  const [location, setLocation] = useState({
-    latitude: 0,
-    longitude: 0,
-    address: '',
-  });
+  
   const [passwordStrength, setPasswordStrength] = useState(0);
 
   const calculatePasswordStrength = (password: string) => {
     let strength = 0;
-    if (password.length > 7) strength += 1;
+    if (password.length > 5) strength += 1;
     if (password.match(/[a-z]+/)) strength += 1;
     if (password.match(/[A-Z]+/)) strength += 1;
     if (password.match(/[0-9]+/)) strength += 1;
@@ -44,24 +38,6 @@ export default function SignupPage() {
       password
     }));
     setPasswordStrength(calculatePasswordStrength(password));
-  };
-
-  const getCurrentLocation = () => {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setLocation({
-            latitude,
-            longitude,
-            address: 'Location detected successfully'
-          });
-        },
-        (error) => {
-          console.error('Location error:', error);
-        }
-      );
-    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -236,7 +212,7 @@ export default function SignupPage() {
               <input
                 type="text"
                 name="name"
-                placeholder="Full Name"
+                placeholder="Organization's Name"
                 className="w-full pl-10 pr-4 py-3 text-white/30 border-2 border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-golden)] focus:border-transparent transition-all"
                 required={!isLogin}
               />
@@ -265,8 +241,8 @@ export default function SignupPage() {
               required
             />
             {/* Password strength indicator */}
-            <div className="mt-1 flex space-x-1">
-              {[1,2,3,4,5].map((level) => (
+            <div className="mt-3 flex space-x-1">
+              {[1,2].map((level) => (
                 <div 
                   key={level} 
                   className={`h-1 w-full rounded-full transition-colors ${
@@ -278,28 +254,7 @@ export default function SignupPage() {
               ))}
             </div>
           </div>
-          
-          {!isLogin && (
-            <div className="relative group">
-              <MapPin className="absolute left-3 top-3 text-white/30 group-focus-within:text-[var(--color-golden)] transition-colors" />
-              <input
-                type="text"
-                name="address"
-                placeholder="Location Address"
-                className="w-full pl-10 pr-4 py-3 text-white/30 border-2 border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-golden)] focus:border-transparent transition-all"
-                value={location.address}
-                onChange={(e) => setLocation(prev => ({...prev, address: e.target.value}))}
-              />
-              <button
-                type="button"
-                onClick={getCurrentLocation}
-                className="absolute right-3 top-3 text-white/30 bg-[var(--color-background)] text-/30 p-1 rounded-full hover:bg-[var(--color-golden)] transition-colors"
-              >
-                <Shield className="w-5 h-5 text-white/30 group-focus-within:text-[var(--color-golden)]" />
-              </button>
-            </div>
-          )}
-          
+       
           <button 
             type="submit" 
             className="w-full bg-[var(--color-muted-gold)]/30 text-white py-3 rounded-xl hover:bg-[var(--color-muted-gold)]/80 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
