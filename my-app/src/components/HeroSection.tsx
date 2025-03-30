@@ -15,11 +15,11 @@ export default function HeroSection() {
             AI-driven insights, smarter decisions, <br /> <span className="text-[var(--color-secondary-golden)] font-semibold">financial success!</span>
           </p>
           <a
-            href="/signUp"
+            href="/signup"
             className="mt-6 inline-block bg-[var(--color-golden)] text-[var(--color-background)] px-6 py-3 rounded-lg text-lg font-semibold shadow-md transition-all duration-300 
             hover:bg-[var(--color-muted-gold)] hover:shadow-lg hover:scale-105 hover:text-black">
             Get Started Today!
-            </a>
+          </a>
 
         </div>
 

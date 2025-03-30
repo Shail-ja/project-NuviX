@@ -15,7 +15,7 @@ export default function Navbar() {
     { name: "Home", path: "/", icon: <Home className="h-5 w-5" /> },
     { name: "About us", path: "/AboutUs", icon: <Info className="h-5 w-5" /> },
     { name: "Features", path: "/Features", icon: <BookOpen className="h-5 w-5" /> },
-    { name: "Guidelines", path: "/guide", icon: <Users className="h-5 w-5" /> },
+    { name: "Guide", path: "/guide", icon: <Users className="h-5 w-5" /> },
   ]
 
   // Handle scroll effect

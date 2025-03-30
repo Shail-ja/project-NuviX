@@ -100,7 +100,15 @@ export default function Dashboard() {
             <span>79.8% success rate</span>
           </div>
         </div>
-      </div>      
+      </div> 
+      <div className="flex justify-center mt-8">
+        <a
+            href="/form"
+            className="mt-6 inline-block bg-[var(--color-golden)] text-[var(--color-background)] px-6 py-3 rounded-lg text-lg font-semibold shadow-md transition-all duration-300 
+            hover:bg-[var(--color-muted-gold)] hover:shadow-lg hover:scale-105 hover:text-black">
+            Let's Analyze
+        </a>  
+      </div>   
     </div>
     </ProtectedRoute>
   );

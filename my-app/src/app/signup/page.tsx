@@ -274,7 +274,7 @@ export default function SignupPage() {
                 placeholder="Organization's Name"
                 value={formData.username}
                 onChange={handleInputChange}
-                className="w-full pl-10 pr-4 py-3 text-white/30 border-2 border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-golden)] focus:border-transparent transition-all"
+                className="w-full pl-10 pr-4 py-3 text-white/30 border-2 border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--color-golden)] focus:border-transparent hover:bg-current transition-all"
                 required={!isLogin}
               />
             </div>
