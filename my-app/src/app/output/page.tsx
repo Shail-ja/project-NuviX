@@ -4,14 +4,17 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 // import riskExplanationImage from '.'; // Import your image
 
 export default function RiskAssessment() {
   // Mock data - in a real app, this would come from your ML model API
   const [riskData] = useState({
-    riskScore: 4.78, // Any float value
+    riskScore: 388.46, // Any float value
     defaultStatus: 1
   });
+
+  const router = useRouter();
 
   return (
     <div className="min-h-screen bg-[var(--color-text)] relative">
@@ -103,6 +106,12 @@ export default function RiskAssessment() {
           <p>Assessment performed on {new Date().toLocaleDateString()}</p>
         </div>
       </div>
+      <button
+      className="fixed bottom-6 right-6 bg-[var(--color-golden)] text-black px-4 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
+      onClick={() => router.push('/guide')}
+    >
+      💬 Chat
+    </button>
     </div>
   );
 }

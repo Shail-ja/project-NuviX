@@ -13,8 +13,8 @@ const features = [
   },
   {
     icon: <Database className="h-8 w-8 text-[var(--color-primary)]" />,
-    title: "Financial System Integration",
-    description: "Seamless connection with banking APIs for real-time data processing and analysis."
+    title: "Explainable AI",
+    description: "Understand the factors influencing risk scores with our transparent AI model."
   },
   {
     icon: <Lock className="h-8 w-8 text-[var(--color-primary)]" />,

@@ -31,7 +31,7 @@ export default function ChatBot() {
       {
         id: "welcome",
         content:
-          "Hello! I'm Nuvix, your finance assistant. Ask me anything about financial concepts, SHAP values, or investment strategies.",
+          "Hello! I'm Nuvix, your finance assistant. Ask me anything about financial concepts or investment strategies.",
         isBot: true,
       },
     ])
