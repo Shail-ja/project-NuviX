@@ -317,7 +317,7 @@ export default function ChatBot() {
       </div>
 
       <motion.div
-        className="border-t p-4 bg-[var(--color-background)]"
+        className="border-t p-4 bg-[var(--color-background)] text-white"
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
