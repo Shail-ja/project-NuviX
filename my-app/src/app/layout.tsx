@@ -1,6 +1,8 @@
 
 import './global.css';
 import Footer from '@/components/Footer';
+import { AuthProvider } from '@/app/context/AuthContext';
+import Navbar from '@/components/Navbar';
 
 export const metadata = {
   title: 'NuviX',
@@ -15,8 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen">
+        <Navbar />
         <main className="flex-1">
+          <AuthProvider>
           {children}
+          </AuthProvider>
         </main>
         <Footer />
       </body>

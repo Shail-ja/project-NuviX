@@ -15,7 +15,7 @@ export default function Navbar() {
     { name: "Home", path: "/", icon: <Home className="h-5 w-5" /> },
     { name: "About us", path: "/AboutUs", icon: <Info className="h-5 w-5" /> },
     { name: "Features", path: "/Features", icon: <BookOpen className="h-5 w-5" /> },
-    { name: "Community", path: "/community", icon: <Users className="h-5 w-5" /> },
+    { name: "Guidelines", path: "/guide", icon: <Users className="h-5 w-5" /> },
   ]
 
   // Handle scroll effect
@@ -34,7 +34,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`relative w-full z-50 transition-all duration-300 ${
         scrolled
           ? "bg-[var(--color-background)]"
           : "bg-black"
@@ -42,9 +42,8 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex h-20">
-          {/* CLUSTER 1: Logo with SVG animation */}
           <div className="flex items-center justify-start w-1/4 pr-6">
-            <Link href="/" className="group flex items-center space-x-3">
+            <Link href="/" className="group flex items-center space-x-3 overflow-hidden">
               <div className="relative h-12 w-12 transition-transform duration-500 group-hover:scale-110">
                 <svg
                   className="h-12 w-12 text-white"
@@ -52,10 +51,7 @@ export default function Navbar() {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  {/* Outer glow */}
                   <circle cx="32" cy="32" r="30" fill="url(#radialGradient)" className="opacity-20" />
-
-                  {/* Nuvix rays - animated */}
                   <circle
                     cx="32"
                     cy="32"
@@ -74,15 +70,9 @@ export default function Navbar() {
                     strokeDasharray="3 3"
                     className="animate-[spin_15s_linear_infinite_reverse]"
                   />
-
-                  {/* Nuvix triangle */}
                   <path d="M32 12L44.7846 32.7692H19.2154L32 12Z" fill="currentColor" className="drop-shadow-md" />
                   <path d="M32 52L44.7846 31.2308H19.2154L32 52Z" fill="currentColor" className="drop-shadow-md" />
-
-                  {/* Nuvix light - animated */}
                   <circle cx="32" cy="32" r="8" fill="white" className="animate-[pulse_2s_ease-in-out_infinite]" />
-
-                  {/* Nuvix pole */}
                   <path
                     d="M32 8L32 56"
                     stroke="currentColor"
@@ -90,8 +80,6 @@ export default function Navbar() {
                     strokeLinecap="round"
                     className="drop-shadow-md"
                   />
-
-                  {/* Define gradient */}
                   <defs>
                     <radialGradient id="radialGradient" cx="0.5" cy="0.5" r="0.5">
                       <stop offset="0%" stopColor="white" stopOpacity="0.8" />
@@ -100,13 +88,11 @@ export default function Navbar() {
                   </defs>
                 </svg>
               </div>
-              <div className="font-bold text-2xl text-white transition-all duration-300 group-hover:[var(--color-accent)]">
-                Nuvi<span className="text-[var(--color-golden)]">X</span>
+              <div className="font-bold text-2xl text-white transition-all duration-300 group-hover:[var(--color-accent)] overflow-hidden">
+                Nuvi<span className="text-[var(--color-golden)] overflow-hidden">X</span>
               </div>
             </Link>
           </div>
-
-          {/* CLUSTER 3: Navigation Links (centered) */}
           <div className="hidden md:flex flex-1 items-center justify-center">
             <div className="flex items-center space-x-2 px-4">
               {navLinks.map((link) => {
@@ -128,8 +114,6 @@ export default function Navbar() {
               })}
             </div>
           </div>
-
-          {/* CLUSTER 2: Login/Register */}
           <div className="hidden md:flex items-center justify-end w-1/4 pl-6">
             <div className="flex items-center space-x-3">
               <Link
@@ -142,8 +126,6 @@ export default function Navbar() {
                   <LogIn className="h-5 w-5" />
                 </span>
                 <span className="relative z-10">Login</span>
-
-                {/* Hover background effect */}
                 <span
                   className="absolute inset-0 group-hover:bg-[var(--color-muted-gold)]
                   transition-all duration-300 transform translate-y-full group-hover:scale-110 group-hover:translate-y-0 rounded-md"
@@ -151,8 +133,6 @@ export default function Navbar() {
               </Link>
             </div>
           </div>
-
-          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center justify-end flex-1">
             <button
               className="p-2 rounded-lg transition-colors duration-300
@@ -168,14 +148,11 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
         <div
           className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
             isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          {/* Mobile Navigation Links */}
           <div className="py-3 border-t border-white/10">
             <div className="grid grid-cols-1 gap-2 px-1">
               {navLinks.map((link) => {
@@ -198,8 +175,6 @@ export default function Navbar() {
               })}
             </div>
           </div>
-
-          {/* Mobile Login/Register */}
           <div className="py-4 border-t border-white/10 flex space-x-3 px-1">
             <Link
               href="/signup"

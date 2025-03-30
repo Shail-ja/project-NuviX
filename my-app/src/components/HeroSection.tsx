@@ -8,7 +8,7 @@ export default function HeroSection() {
       <div className="container mx-auto px-6 flex flex-col md:flex-row items-center">
         {/* Left Side - Text Content */}
         <div className="md:w-1/2 text-left">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-[var(--color-golden)] leading-tight">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-[var(--color-golden)] overflow-hidden">
             Take Control of <span className="text-[var(--color-secondary-golden)]">Your Credit!</span>
           </h1>
           <p className="text-lg text-[var(--color-text)] mt-4 tracking-wide">
