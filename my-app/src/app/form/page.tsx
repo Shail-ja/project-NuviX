@@ -1,5 +1,20 @@
 "use client";
+
 import React, { useState, useEffect } from 'react';
+import { useRouter } from "next/navigation";
+
+interface FormData {
+  name: string;
+  age: string;
+  income: string;
+  existingDebtPayments: string;
+  loanAmount: string;
+  loanRate: string;
+  loanTerm: string;
+  hasDependents: boolean;
+  hasMortgage: boolean;
+  loanPurpose: string;
+}
 
 const FinancialForm = () => {
   const initialFormState = {
@@ -56,8 +71,10 @@ const FinancialForm = () => {
     // Add your form submission logic here
   };
 
+  const router = useRouter();
+
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center before:content-[''] before:absolute before:inset-0 before:bg-blue-900/90 before:backdrop-blur-sm">
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center before:content-[''] before:absolute before:inset-0 before:bg-[var(--color-text)] before:backdrop-blur-sm">
       {/* Financial icon patterns - subtle background elements */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         <div className="absolute top-10 left-10 text-6xl">$</div>
@@ -72,9 +89,9 @@ const FinancialForm = () => {
         <div className="p-8">
           <div className="text-center mb-8">
             <div className="mb-4 flex justify-center">
-              <div className="w-20 h-2 bg-blue-500 rounded-full"></div>
+              <div className="w-20 h-2 bg-[var(--color-golden)] rounded-full"></div>
             </div>
-            <h1 className="text-3xl font-bold text-blue-700">
+            <h1 className="text-3xl font-bold ">
               Financial Information Form
             </h1>
             <p className="mt-3 text-gray-600">Please enter your details below to proceed</p>
@@ -316,6 +333,7 @@ const FinancialForm = () => {
                 Reset
               </button>
               <button
+                onClick={() => router.push('/output')}
                 type="submit"
                 className="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-lg hover:shadow-blue-500/30"
               >

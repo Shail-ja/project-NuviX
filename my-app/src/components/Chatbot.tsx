@@ -179,7 +179,7 @@ export default function ChatBot() {
   )
 
   return (
-    <div className="flex flex-col h-screen w-screen overflow-hidden bg-white relative">
+    <div className="flex flex-col h-screen w-screen overflow-hidden bg-[var(--color-background)] relative">
       <motion.div
         className="absolute -z-10 w-64 h-64 rounded-full bg-emerald-200 opacity-20 blur-3xl"
         animate={{
@@ -317,7 +317,7 @@ export default function ChatBot() {
       </div>
 
       <motion.div
-        className="border-t p-4 bg-white"
+        className="border-t p-4 bg-[var(--color-background)]"
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}

@@ -32,6 +32,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login state
+
+  const handleLogin = () => setIsLoggedIn(true)
+  const handleLogout = () => {
+    setIsLoggedIn(false); // Simulate logout
+    // You can also clear cookies, localStorage, or call an API to log out
+  };
+
   return (
     <nav
       className={`relative w-full z-50 transition-all duration-300 ${
@@ -116,6 +124,26 @@ export default function Navbar() {
           </div>
           <div className="hidden md:flex items-center justify-end w-1/4 pl-6">
             <div className="flex items-center space-x-3">
+            {isLoggedIn ? (
+              <>
+              <Link
+                href="/signup"
+                className="flex items-center space-x-2 px-4 py-2.5 rounded-md
+                  transition-all duration-300 text-[var(--color-text)] hover:text-[var(--color-background)] hover:bg-[var(--color-golden)] relative group overflow-hidden"
+                aria-label="Login"
+              >
+                <span className="relative z-10 transition-transform group-hover:scale-110 duration-300">
+                  <LogIn className="h-5 w-5" />
+                </span>
+                <span className="relative z-10">Logout</span>
+                <span
+                  className="absolute inset-0 group-hover:bg-[var(--color-muted-gold)]
+                  transition-all duration-300 transform translate-y-full group-hover:scale-110 group-hover:translate-y-0 rounded-md"
+                ></span>
+              </Link>
+              </>
+            ) : (
+              <>
               <Link
                 href="/signup"
                 className="flex items-center space-x-2 px-4 py-2.5 rounded-md
@@ -131,6 +159,8 @@ export default function Navbar() {
                   transition-all duration-300 transform translate-y-full group-hover:scale-110 group-hover:translate-y-0 rounded-md"
                 ></span>
               </Link>
+              </>
+            )}
             </div>
           </div>
           <div className="md:hidden flex items-center justify-end flex-1">

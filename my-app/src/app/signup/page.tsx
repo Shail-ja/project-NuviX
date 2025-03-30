@@ -35,15 +35,6 @@ export default function SignupPage() {
     return strength;
   };
 
-  // const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const password = e.target.value;
-  //   setFormData(prev => ({
-  //     ...prev,
-  //     password
-  //   }));
-  //   setPasswordStrength(calculatePasswordStrength(password));
-  // };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({

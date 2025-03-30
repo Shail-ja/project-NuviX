@@ -1,8 +1,12 @@
+"use client"
+
 import ProtectedRoute from '@/components/protectedRoute';
 import { ArrowUpIcon, ArrowDownIcon } from '@heroicons/react/24/solid';
+import { useRouter } from "next/navigation";
 import React from 'react';
 
 export default function Dashboard() {
+  const router = useRouter();
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-[var(--color-background)] text-white p-8">
@@ -110,6 +114,12 @@ export default function Dashboard() {
         </a>  
       </div>   
     </div>
+    <button
+      className="fixed bottom-6 right-6 bg-[var(--color-golden)] text-black px-4 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
+      onClick={() => router.push('/guide')}
+    >
+      💬 Chat
+    </button>
     </ProtectedRoute>
   );
 }
